@@ -1,0 +1,25 @@
+{
+  "name": "shifter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "rs:build": "rescript",
+    "rs:dev": "rescript -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@rescript/core": "1.2.0",
+    "@rescript/react": "0.12.1",
+    "ink": "^4.4.1",
+    "rescript": "11.0.1"
+  },
+  "overrides": {
+    "@rescript/core": "1.2.0",
+    "@rescript/react": "0.12.1",
+    "rescript": "11.0.1"
+  }
+}
