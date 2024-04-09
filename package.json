@@ -12,10 +12,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@inkjs/ui": "^1.0.0",
     "@rescript/core": "1.2.0",
     "@rescript/react": "0.12.1",
     "ink": "^4.4.1",
-    "rescript": "11.0.1"
+    "rescript": "11.0.1",
+    "rescript-nodejs": "^16.1.0"
   },
   "overrides": {
     "@rescript/core": "1.2.0",
