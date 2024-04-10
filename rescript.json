@@ -19,7 +19,8 @@
     "rescript-nodejs"
   ],
   "bsc-flags": [
-    "-open RescriptCore"
+    "-open RescriptCore",
+    "-open Render"
   ],
   "jsx": { "version": 4, "mode": "automatic" }
 }

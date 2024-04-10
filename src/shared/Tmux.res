@@ -6,11 +6,11 @@ type arg =
   | StatusPosition(statusPosition)
 
 let argToString = arg => {
-  let createArg = (~command, ~value) => `${command} "${value}"`
+  let make = (~command, ~value) => `${command} "${value}"`
   switch arg {
-  | StatusBg(value) => createArg(~command="status-bg", ~value)
-  | StatusFg(value) => createArg(~command="status-fg", ~value)
-  | StatusPosition(value) => createArg(~command="status-position", ~value=(value :> string))
+  | StatusBg(value) => make(~command="status-bg", ~value)
+  | StatusFg(value) => make(~command="status-fg", ~value)
+  | StatusPosition(value) => make(~command="status-position", ~value=(value :> string))
   }
 }
 
