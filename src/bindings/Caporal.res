@@ -1,7 +1,7 @@
 type t
 
-@module("@caporal/core") @scope("default")
-external program: t = "program"
+@module("@caporal/core") 
+external program: t = "default"
 
 type logger = {
   info: string => unit

@@ -18,7 +18,14 @@ let _ = {
   ->command("start", "Let's configure your TMUX from scratch.")
   ->default
   ->action((_) => {
-    render(<App />)
+    open Tmux
+    let commands = [
+      SetGlobal(StatusBg(Themes.nord.background)),
+      SetGlobal(StatusFg(Themes.nord.foreground))
+    ]
+    commands->Array.forEach(cmd =>
+    cmd->Tmux.command->Tmux.exec->ignore)
+
   })
 
   program->run

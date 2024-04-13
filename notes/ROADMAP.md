@@ -1,6 +1,6 @@
 ## Features
-- Mover TMUX para cima ou para baixo
 - Trocar tema
+- Mover TMUX para cima ou para baixo
 - Esconder workspace/session
 - Alterar layout das panes/tabs
 - Definir um separador para as tabs
