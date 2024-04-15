@@ -23,14 +23,10 @@ let options = {
 let make = () => {
   open InkUI
   let steps = InitCommand_Steps.useSteps()
-
-  let handleChange = _ => steps.next()
+  let handleChange = _ => steps.forward()
 
   <Box display=#flex flexDirection=#column>
-    <Box gap={1}>
-      <Badge color="green"> {"1"->s} </Badge>
-      <Text> {"Select your favorite theme?"->s} </Text>
-    </Box>
+    <StepHeader number={steps.current.index}> {"Select a theme"->s} </StepHeader>
     <Box paddingLeft={1}>
       <Select options onChange={handleChange} />
     </Box>

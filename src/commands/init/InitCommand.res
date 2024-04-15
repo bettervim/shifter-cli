@@ -6,7 +6,7 @@ module Implementation = {
   let make = () => {
     let steps = InitCommand_Steps.useSteps()
 
-    switch steps.step {
+    switch steps.current.id {
     | SelectTheme => <InitCommand_SelectTheme />
     | StatusPosition => <Text>{"StatusPosition"->s}</Text>
     | Terminate => <Text>{"Finish"->s} </Text>
