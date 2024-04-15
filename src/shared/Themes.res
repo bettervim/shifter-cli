@@ -4,15 +4,21 @@ type colorWithVariants = {
 }
 
 type t = {
-  background: string,
-  foreground: string,
+  background: colorWithVariants,
+  foreground: colorWithVariants,
   primary: colorWithVariants,
   secondary: colorWithVariants,
 }
 
 let nord = {
-  foreground: "#E5E9F0",
-  background: "#3C4251",
-  primary: {_100: "#FAFAFA", _200: "#94BECE"},
+  foreground: {
+    _100: "",
+    _200: "#D8DEE9"
+  },
+  background: {
+    _100: "#3B4252",
+    _200: "#2E3440"
+  },
+  primary: {_100: "#81A1C1", _200: "#94BECE"},
   secondary: {_100: "#FAFAFA", _200: "#94BECE"},
 }

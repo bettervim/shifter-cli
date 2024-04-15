@@ -23,7 +23,28 @@ let options = {
 let make = () => {
   open InkUI
   let steps = InitCommand_Steps.useSteps()
-  let handleChange = _ => steps.forward()
+  let handleChange = _ => {
+    open Tmux
+
+    let commands = [
+      SetGlobal(WindowStatusSeparator("")),
+      SetGlobal(WindowStatusCurrentFormat(" #W ")),
+      SetGlobal(
+        WindowStatusCurrentStyle(
+          `bg=${Themes.nord.primary._100}, fg=${Themes.nord.background._100}`,
+        ),
+      ),
+      SetGlobal(WindowStatusStyle(`bg=#{Themes.nord.background._200}`)),
+      SetGlobal(StatusBg(Themes.nord.background._200)),
+      SetGlobal(StatusFg(Themes.nord.foreground._200)),
+      SetGlobal(StatusLeftLength("300")),
+      SetGlobal(StatusLeftContent(" #S ")),
+    ]
+
+    commands->Array.forEach(command => {
+      command->Tmux.command->Tmux.exec->ignore
+    })
+  }
 
   <Box display=#flex flexDirection=#column>
     <StepHeader number={steps.current.index}> {"Select a theme"->s} </StepHeader>
