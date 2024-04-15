@@ -9,7 +9,10 @@ module Implementation = {
     switch steps.current.id {
     | SelectTheme => <InitCommand_SelectTheme />
     | StatusPosition => <InitCommand_SelectStatusPosition />
-    | Terminate => <Text>{"Finish"->s} </Text>
+    | Terminate => {
+        Console.clear()
+        <Text> {"Completed ✅"->s} </Text>
+      }
     }
   }
 }
