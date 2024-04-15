@@ -39,3 +39,8 @@ module Text = {
   @module("ink")
   external make: React.component<props> = "Text"
 }
+
+type useInputArgs = {isActive: bool}
+
+@module("ink")
+external useInput: (('input, 'key) => unit, useInputArgs) => unit = "useInput"
