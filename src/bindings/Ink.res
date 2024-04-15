@@ -3,6 +3,8 @@ external render: React.element => unit = "render"
 
 module Style = {
   type color = [#green | #red]
+  type display = [#flex | #none]
+  type flexDirection = [#column | #"column-reverse" | #row | #"row-reverse"]
   type borderStyle = [
     | #single
     | #double
@@ -13,7 +15,15 @@ module Style = {
     | #classic
     | #arrow
   ]
-  type styles = {color?: color, borderStyle?: borderStyle}
+  type styles = {
+    display?: display,
+    flexDirection?: flexDirection,
+    gap?: int,
+    paddingLeft?: int,
+    marginTop?: int,
+    color?: color,
+    borderStyle?: borderStyle,
+  }
 }
 
 module Box = {

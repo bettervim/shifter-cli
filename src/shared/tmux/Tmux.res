@@ -22,8 +22,3 @@ let command = command =>
   }
 
 let exec = command => NodeJs.ChildProcess.execSync(command)->ignore
-
-module TimeCapsule = {
-  @module("./sh.js")
-  external sh: string => promise<string> = "sh"
-  }

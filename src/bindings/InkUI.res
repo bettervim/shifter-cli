@@ -11,3 +11,14 @@ module Select = {
   @module("@inkjs/ui")
   external make: React.component<props> = "Select"
 }
+
+module Badge = {
+  type props = {
+    color: string,
+    children: React.element
+  }
+
+  @module("@inkjs/ui")
+  external make: React.component<props> = "Badge"
+
+}
