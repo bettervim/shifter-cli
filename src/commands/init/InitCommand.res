@@ -8,7 +8,7 @@ module Implementation = {
 
     switch steps.current.id {
     | SelectTheme => <InitCommand_SelectTheme />
-    | StatusPosition => <Text>{"StatusPosition"->s}</Text>
+    | StatusPosition => <InitCommand_SelectStatusPosition />
     | Terminate => <Text>{"Finish"->s} </Text>
     }
   }
