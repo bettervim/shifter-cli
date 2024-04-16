@@ -27,8 +27,8 @@ let make = () => {
     open Tmux
 
     let commands = [
-      SetGlobal(WindowStatusSeparator("")),
-      SetGlobal(WindowStatusCurrentFormat(" #W ")),
+      // SetGlobal(WindowStatusSeparator("")),
+      // SetGlobal(WindowStatusCurrentFormat(" #W ")),
       SetGlobal(
         WindowStatusCurrentStyle(
           `bg=${Themes.nord.primary._100}, fg=${Themes.nord.background._100}`,
@@ -37,13 +37,15 @@ let make = () => {
       SetGlobal(WindowStatusStyle(`bg=#{Themes.nord.background._200}`)),
       SetGlobal(StatusBg(Themes.nord.background._200)),
       SetGlobal(StatusFg(Themes.nord.foreground._200)),
-      SetGlobal(StatusLeftLength("300")),
-      SetGlobal(StatusLeftContent(" #S ")),
+      // SetGlobal(StatusLeftLength("300")),
+      // SetGlobal(StatusLeftContent(" #S ")),
     ]
 
     commands->Array.forEach(command => {
       command->Tmux.command->Tmux.exec->ignore
     })
+
+    steps.forward()
   }
 
   <Box display=#flex flexDirection=#column>

@@ -7,7 +7,7 @@ FOREGROUND="#ECEFF4"
 FOREGROUND_INVERT="#000000"
 
 # Window
-tmux set -g window-status-separator ""
+tmux set -g window-status-separator ""
 
 ## Current
 tmux set -g window-status-current-format "$WINDOW_FORMAT"

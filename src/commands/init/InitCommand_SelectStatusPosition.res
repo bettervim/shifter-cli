@@ -18,7 +18,21 @@ let options = {
 @react.component
 let make = () => {
   let steps = InitCommand_Steps.useSteps()
-  let handleChange = _ => steps.forward()
+  let handleChange = position => {
+    let value = switch position {
+    | "top" => Some(#top)
+    | "bottom" => Some(#bottom)
+    | _ => None
+    }
+
+    switch value {
+    | Some(position) => Tmux.command(SetGlobal(StatusPosition(position)))->Tmux.exec->ignore
+    | None => ()
+    }
+
+
+    steps.forward()
+  }
 
   <Box display=#flex flexDirection=#column>
     <StepHeader number={steps.current.index}>
