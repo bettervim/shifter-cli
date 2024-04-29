@@ -1,16 +1,19 @@
 open Ink
-open InkUI
+
+module StatusPositionSelect = Select.Make({
+  type t = Tmux.statusPosition
+})
 
 let options = {
-  open InkUI.Select
+  open StatusPositionSelect
   [
     {
-      value: "top",
       label: "Top",
+      value: #top,
     },
     {
-      value: "bottom",
       label: "Bottom",
+      value: #bottom,
     },
   ]
 }
@@ -43,7 +46,7 @@ let make = () => {
       {" of the screen?"->s}
     </StepHeader>
     <Box paddingLeft={1}>
-      <Select options onChange={handleChange} />
+      <StatusPositionSelect options onChange={handleChange} />
     </Box>
   </Box>
 }

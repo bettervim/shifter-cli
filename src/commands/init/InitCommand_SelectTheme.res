@@ -1,20 +1,23 @@
 open Ink
 
+module ThemesSelect = Select.Make({
+  type t = [
+    | #nord
+    | #dracula
+  ]
+})
+
 let options = {
-  open InkUI.Select
+  open ThemesSelect
 
   [
     {
       label: "Nord",
-      value: "nord",
+      value: #nord,
     },
     {
       label: "Dracula",
-      value: "dracula",
-    },
-    {
-      label: "Catppuccin",
-      value: "catppuccin",
+      value: #dracula,
     },
   ]
 }
@@ -41,16 +44,16 @@ let setTheme = () => {
 
 @react.component
 let make = () => {
-  open InkUI
   let steps = InitCommand_Steps.useSteps()
   let handleChange = _ =>  {
     setTheme()
+    steps.forward()
   }
 
   <Box display=#flex flexDirection=#column>
     <StepHeader number={steps.current.index}> {"Select a theme"->s} </StepHeader>
     <Box paddingLeft={1}>
-      <Select options onChange={handleChange} />
+      <ThemesSelect options onChange={handleChange} />
     </Box>
   </Box>
 }
