@@ -1,13 +1,28 @@
 type statusPosition = [#top | #bottom]
 
+module Styles = {
+  type t = {
+    bg?: string,
+    fg?: string,
+  }
+
+  let toString = (styles) => {
+    let makeProp = (~name, value) => value->Option.mapOr("", v => `${name}=${v}`)
+    let bg = makeProp(~name="bg", styles.bg)
+    let fg = makeProp(~name="fg", styles.fg)
+
+    `${bg}, ${fg}`
+  }
+}
+
 type arg =
   | StatusBg(string)
   | StatusFg(string)
   | StatusPosition(statusPosition)
   | WindowStatusSeparator(string)
   | WindowStatusCurrentFormat(string)
-  | WindowStatusCurrentStyle(string)
-  | WindowStatusStyle(string)
+  | WindowStatusCurrentStyle(Styles.t)
+  | WindowStatusStyle(Styles.t)
   | WindowStatusFormat(string)
   | StatusLeftContent(string)
   | StatusLeftLength(string)
@@ -20,8 +35,8 @@ let argToString = arg => {
   | StatusPosition(value) => make(~command="status-position", ~value=(value :> string))
   | WindowStatusSeparator(value) => make(~command="window-status-separator", ~value)
   | WindowStatusCurrentFormat(value) => make(~command="window-status-current-format", ~value)
-  | WindowStatusCurrentStyle(value) => make(~command="window-status-current-style", ~value)
-  | WindowStatusStyle(value) => make(~command="window-status-style", ~value)
+  | WindowStatusCurrentStyle(value) => make(~command="window-status-current-style", ~value=Styles.toString(value))
+  | WindowStatusStyle(value) => make(~command="window-status-style", ~value=Styles.toString(value))
   | WindowStatusFormat(value) => make(~command="window-status-format", ~value)
   | StatusLeftContent(value) => make(~command="status-left", ~value)
   | StatusLeftLength(value) => make(~command="status-left-length", ~value)

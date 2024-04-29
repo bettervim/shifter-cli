@@ -130,5 +130,5 @@ dist
 .pnp.*
 
 ## ReScript
-*.res.js
+*.res.mjs
 lib/
