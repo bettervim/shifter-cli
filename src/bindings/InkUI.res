@@ -26,6 +26,7 @@ module TextInput = {
   type props = {
     placeholder?: string,
     onChange: string => unit,
+    onSubmit: unit => unit,
   }
 
   @module("@inkjs/ui")

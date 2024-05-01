@@ -3,6 +3,7 @@ module type ISelect = {
 }
 
 module Make = (ISelect: ISelect) => {
+  type t = ISelect.t
   type option = {
     label: string,
     value: ISelect.t,
