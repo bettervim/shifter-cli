@@ -29,7 +29,7 @@ let make = () => {
     }
 
     switch value {
-    | Some(position) => Tmux.command(SetGlobal(StatusPosition(position)))->Tmux.exec->ignore
+    | Some(position) => SetGlobal(StatusPosition(position))->Tmux.exec->ignore
     | None => ()
     }
 

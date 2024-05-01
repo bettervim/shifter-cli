@@ -9,6 +9,8 @@ module Implementation = {
     switch steps.current.id {
     | SelectTheme => <InitCommand_SelectTheme />
     | StatusPosition => <InitCommand_SelectStatusPosition />
+    | StatusLeft => <InitCommand_StatusLeft />
+    | WindowLayout => <InitCommand_WindowLayout />
     | Terminate => {
         Console.clear()
         <Text> {"Completed ✅"->s} </Text>

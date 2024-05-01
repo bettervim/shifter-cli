@@ -1,6 +1,6 @@
-type steps = SelectTheme | StatusPosition | Terminate
+type steps = SelectTheme | StatusPosition | StatusLeft | WindowLayout | Terminate
 
-let steps = [SelectTheme, StatusPosition, Terminate]
+let steps = [SelectTheme, StatusPosition, StatusLeft, WindowLayout, Terminate]
 
 let getStep = index => steps->Array.get(index)
 

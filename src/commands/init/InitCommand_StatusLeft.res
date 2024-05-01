@@ -4,7 +4,6 @@ module StatusLeftSelect = Select.Make({
   type t = [
     | #"session-name"
     | #"number-and-session-name"
-    | #custom
   ]
 })
 
@@ -20,21 +19,20 @@ let options = {
       label: "Number & Session Name",
       value: #"number-and-session-name",
     },
-    {
-      label: "Custom (next step)",
-      value: #"custom",
-    },
   ]
 }
 
-
 @react.component
 let make = () => {
-  open InkUI
-
   let steps = InitCommand_Steps.useSteps()
-  let handleChange = _ =>  {
-    Console.log("...")
+  let handleChange = value => {
+    switch value {
+    | #"session-name" => SetGlobal(StatusLeft(" #S "))->Tmux.exec
+    | #"number-and-session-name" => SetGlobal(StatusLeft(" #I #S "))->Tmux.exec
+    | _ => ()
+    }
+    
+    steps.forward()
   }
 
   <Box display=#flex flexDirection=#column>

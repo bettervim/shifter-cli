@@ -26,6 +26,7 @@ type arg =
   | WindowStatusFormat(string)
   | StatusLeftContent(string)
   | StatusLeftLength(string)
+  | StatusLeft(string)
 
 let argToString = arg => {
   let make = (~command, ~value) => `${command} "${value}"`
@@ -40,14 +41,15 @@ let argToString = arg => {
   | WindowStatusFormat(value) => make(~command="window-status-format", ~value)
   | StatusLeftContent(value) => make(~command="status-left", ~value)
   | StatusLeftLength(value) => make(~command="status-left-length", ~value)
+  | StatusLeft(value) => make(~command="status-left", ~value)
   }
 }
 
 type command = SetGlobal(arg)
 
-let command = command =>
+let parse = command =>
   switch command {
   | SetGlobal(arg) => `tmux set -g ${arg->argToString}`
   }
 
-let exec = command => NodeJs.ChildProcess.execSync(command)->ignore
+let exec = command => NodeJs.ChildProcess.execSync(command->parse)->ignore

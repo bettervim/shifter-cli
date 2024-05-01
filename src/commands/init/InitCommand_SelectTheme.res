@@ -38,7 +38,7 @@ let setTheme = () => {
     ]
 
     commands->Array.forEach(command => {
-      command->Tmux.command->Tmux.exec->ignore
+      command->Tmux.exec->ignore
     })
 }
 

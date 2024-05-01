@@ -5,7 +5,7 @@ module Select = {
   }
   type props = {
     options: array<option>,
-    onChange: string => unit
+    onChange: string => unit,
   }
 
   @module("@inkjs/ui")
@@ -15,10 +15,19 @@ module Select = {
 module Badge = {
   type props = {
     color: string,
-    children: React.element
+    children: React.element,
   }
 
   @module("@inkjs/ui")
   external make: React.component<props> = "Badge"
+}
 
+module TextInput = {
+  type props = {
+    placeholder?: string,
+    onChange: string => unit,
+  }
+
+  @module("@inkjs/ui")
+  external make: React.component<props> = "TextInput"
 }
