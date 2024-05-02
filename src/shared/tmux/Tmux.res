@@ -13,6 +13,8 @@ module Styles = {
 
     `${bg}, ${fg}`
   }
+
+  let inline = (styles) => `#[${toString(styles)}]`
 }
 
 type arg =
@@ -27,6 +29,7 @@ type arg =
   | StatusLeftContent(string)
   | StatusLeftLength(string)
   | StatusLeft(string)
+  | StatusRight(string)
 
 let argToString = arg => {
   let make = (~command, ~value) => `${command} "${value}"`
@@ -42,6 +45,7 @@ let argToString = arg => {
   | StatusLeftContent(value) => make(~command="status-left", ~value)
   | StatusLeftLength(value) => make(~command="status-left-length", ~value)
   | StatusLeft(value) => make(~command="status-left", ~value)
+  | StatusRight(value) => make(~command="status-right", ~value)
   }
 }
 

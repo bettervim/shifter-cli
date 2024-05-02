@@ -5,7 +5,7 @@ let _ = {
   ->command("start", "Let's configure your TMUX from scratch.")
   ->default
   ->action((_) => {
-    Ink.render(<InitCommand />)
+    Ink.render(<CustomizeCommand />)
   })
 
   program->run

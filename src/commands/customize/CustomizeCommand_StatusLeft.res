@@ -4,6 +4,7 @@ module StatusLeftSelect = Select.Make({
   type t = [
     | #"session-name"
     | #"number-and-session-name"
+    | #hidden
   ]
 })
 
@@ -19,16 +20,22 @@ let options = {
       label: "Number & Session Name",
       value: #"number-and-session-name",
     },
+{
+      label: "Hidden (None)",
+      value: #hidden,
+    },
+
   ]
 }
 
 @react.component
 let make = () => {
-  let steps = InitCommand_Steps.useSteps()
+  let steps = CustomizeCommand_Steps.useSteps()
   let handleChange = value => {
     switch value {
     | #"session-name" => SetGlobal(StatusLeft(" #S "))->Tmux.exec
     | #"number-and-session-name" => SetGlobal(StatusLeft(" #I #S "))->Tmux.exec
+    | #hidden => SetGlobal(StatusLeft(""))->Tmux.exec
     | _ => ()
     }
     

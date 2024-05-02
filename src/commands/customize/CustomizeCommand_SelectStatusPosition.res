@@ -20,7 +20,7 @@ let options = {
 
 @react.component
 let make = () => {
-  let steps = InitCommand_Steps.useSteps()
+  let steps = CustomizeCommand_Steps.useSteps()
   let handleChange = position => {
     let value = switch position {
     | "top" => Some(#top)

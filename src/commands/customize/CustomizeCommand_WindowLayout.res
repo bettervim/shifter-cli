@@ -40,7 +40,7 @@ let setWindowFormat = layout => {
 module CustomSeparator = {
   @react.component
   let make = () => {
-    let steps = InitCommand_Steps.useSteps()
+    let steps = CustomizeCommand_Steps.useSteps()
     let (value, setValue) = React.useState(_ => ": ")
 
     ReactUse.useDebounce(() => {
@@ -56,7 +56,7 @@ module CustomSeparator = {
 
 @react.component
 let make = () => {
-  let steps = InitCommand_Steps.useSteps()
+  let steps = CustomizeCommand_Steps.useSteps()
   let (selected, setSelected) = React.useState(_ => None)
   let handleSelect = (value: WindowLayoutSelect.t) => {
     let layout = switch value {

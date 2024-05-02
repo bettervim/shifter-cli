@@ -7,7 +7,7 @@ FOREGROUND="#ECEFF4"
 FOREGROUND_INVERT="#000000"
 
 # Window
-tmux set -g window-status-separator ""
+tmux set -g window-status-separator ""
 
 ## Current
 tmux set -g window-status-current-format "$WINDOW_FORMAT"
@@ -23,5 +23,5 @@ tmux set -g status-fg "$FOREGROUND"
 
 # Status Left
 tmux set -g status-left-length 300
-tmux set -g status-left " #S "
-tmux set -g status-right " #D "
+tmux set -g status-left " #I #S "
+tmux set -g status-right "#[bg=$PRIMARY, fg=$BACKGROUND] 󰥔 #[bg=$BACKGROUND, fg=$FOREGROUND] #S "
