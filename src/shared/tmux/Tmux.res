@@ -4,17 +4,23 @@ module Styles = {
   type t = {
     bg?: string,
     fg?: string,
+    bold?: bool,
   }
 
-  let toString = (styles) => {
+  let toString = styles => {
     let makeProp = (~name, value) => value->Option.mapOr("", v => `${name}=${v}`)
+    let makeBoolProp = (~name, value) => value->Option.mapOr("", v => v ? name : "")
+
     let bg = makeProp(~name="bg", styles.bg)
     let fg = makeProp(~name="fg", styles.fg)
+    let bold = makeBoolProp(~name="bold", styles.bold)
 
-    `${bg}, ${fg}`
+    [bg, fg, bold]
+    ->Array.filter(v => v !== "")
+    ->Array.join(",")
   }
 
-  let inline = (styles) => `#[${toString(styles)}]`
+  let inline = styles => `#[${toString(styles)}]`
 }
 
 type arg =
@@ -39,7 +45,8 @@ let argToString = arg => {
   | StatusPosition(value) => make(~command="status-position", ~value=(value :> string))
   | WindowStatusSeparator(value) => make(~command="window-status-separator", ~value)
   | WindowStatusCurrentFormat(value) => make(~command="window-status-current-format", ~value)
-  | WindowStatusCurrentStyle(value) => make(~command="window-status-current-style", ~value=Styles.toString(value))
+  | WindowStatusCurrentStyle(value) =>
+    make(~command="window-status-current-style", ~value=Styles.toString(value))
   | WindowStatusStyle(value) => make(~command="window-status-style", ~value=Styles.toString(value))
   | WindowStatusFormat(value) => make(~command="window-status-format", ~value)
   | StatusLeftContent(value) => make(~command="status-left", ~value)

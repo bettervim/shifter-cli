@@ -16,7 +16,7 @@ module Make = (ISelect: ISelect) => {
   }
 
   @react.component
-  let make = (~options, ~onSubmit, ~onChange) => {
+  let make = (~options, ~onSubmit, ~onChange: array<ISelect.t> => unit) => {
     let handleChange = value => value->Obj.magic->onChange
 
     <InkUI.MultiSelect options={options->parseOptions} onChange={handleChange} onSubmit={onSubmit} />

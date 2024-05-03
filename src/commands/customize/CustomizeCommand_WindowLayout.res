@@ -33,6 +33,8 @@ module WindowLayout = {
 }
 
 let setWindowFormat = layout => {
+  let styles = Tmux.Styles.inline({bold: true})
+  let layout = `${styles}${layout}`
   Tmux.exec(SetGlobal(WindowStatusFormat(layout)))
   Tmux.exec(SetGlobal(WindowStatusCurrentFormat(layout)))
 }
@@ -49,7 +51,11 @@ module CustomSeparator = {
 
     <Box display=#flex flexDirection=#column>
       <Text> {"💡 Define a separator, you can use any char, including emojis."->s} </Text>
-      <InkUI.TextInput placeholder="Default is : " onChange={v => setValue(_ => v)} onSubmit={() => steps.forward()} />
+      <InkUI.TextInput
+        placeholder="Default is : "
+        onChange={v => setValue(_ => v)}
+        onSubmit={() => steps.forward()}
+      />
     </Box>
   }
 }
