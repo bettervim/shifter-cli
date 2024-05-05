@@ -25,9 +25,9 @@ let make = () => {
     let {theme} = store
     let compiledModules = modules->Array.reduce("", (modules, mod) => {
       let compiledModule = switch mod {
-        | #clock => Modules.clock(~theme)
-        | #hostname => Modules.hostname(~theme)
-        | #date => Modules.date(~theme)
+      | #clock => Modules.clock(~theme)
+      | #hostname => Modules.hostname(~theme)
+      | #date => Modules.date(~theme)
       }
 
       `${modules}${compiledModule}`
@@ -36,27 +36,31 @@ let make = () => {
     Tmux.exec(SetGlobal(StatusRight(compiledModules)))
   }
 
-  let handleSubmit = _ => 
-    steps.forward()
+  let handleSubmit = _ => steps.forward()
 
-  <Box>
-    <ModulesSelect
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-      options=[
-        {
-          label: "Clock",
-          value: #clock,
-        },
-        {
-          label: "Hostname",
-          value: #hostname,
-        },
-        {
-          label: "Date",
-          value: #date,
-        },
-      ]
-    />
+  <Box display=#flex flexDirection=#column>
+    <StepHeader number={steps.current.index}>
+      {"Select modules to display on the right side of the bar"->s}
+    </StepHeader>
+    <Box paddingLeft={1}>
+      <ModulesSelect
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        options=[
+          {
+            label: "Clock",
+            value: #clock,
+          },
+          {
+            label: "Hostname",
+            value: #hostname,
+          },
+          {
+            label: "Date",
+            value: #date,
+          },
+        ]
+      />
+    </Box>
   </Box>
 }

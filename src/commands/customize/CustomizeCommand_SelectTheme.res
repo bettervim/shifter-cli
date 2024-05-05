@@ -59,7 +59,7 @@ let make = () => {
   }
 
   <Box display=#flex flexDirection=#column>
-    <StepHeader number={steps.current.index}> {"Select a theme"->s} </StepHeader>
+    <StepHeader number={steps.current.index}> {"What's your favorite theme?"->s} </StepHeader>
     <Box paddingLeft={1}>
       <ThemesSelect options onChange={handleChange} />
     </Box>

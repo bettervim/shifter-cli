@@ -82,7 +82,7 @@ let make = () => {
 
   <Box display=#flex flexDirection=#column>
     <StepHeader number={steps.current.index}>
-      {"How do you want your window layout?"->s}
+      {"Choose your preferred tab layout"->s}
     </StepHeader>
     {switch selected {
     | None => <WindowLayoutSelect options onChange={handleSelect} />

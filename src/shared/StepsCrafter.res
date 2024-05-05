@@ -6,10 +6,9 @@ module type ICrafter = {
 
 module Make = (ICrafter: ICrafter) => {
   type steps = ICrafter.t
-
   let steps = ICrafter.steps
-
   let getStep = index => steps->Array.get(index)
+  let initial = ICrafter.initial
 
   type currentStep = {
     index: int,

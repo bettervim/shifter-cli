@@ -43,7 +43,7 @@ let make = () => {
   }
 
   <Box display=#flex flexDirection=#column>
-    <StepHeader number={steps.current.index}> {"How do you want your status-left?"->s} </StepHeader>
+    <StepHeader number={steps.current.index}> {"Select modules to display on the left side of the bar"->s} </StepHeader>
     <Box paddingLeft={1}>
       <StatusLeftSelect options onChange={handleChange} />
     </Box>
