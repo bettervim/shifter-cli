@@ -1,22 +1,33 @@
 open Ink
 type steps = SelectTheme | StatusPosition
 
+module WelcomeMessage = {
+  @react.component
+  let make = () => {
+    <Box paddingBottom={1} display=#flex flexDirection=#column>
+      <Text color=#green bold=true italic=true> {"Shifter ⚡"->s} </Text>
+      <Text>
+        {"This command will guide you through creating a new"->s}
+        <Text color=#green> {" UI "->s} </Text>
+        {"config from scratch."->s}
+      </Text>
+      <Text>
+        {"Enjoy"->s}
+        <Text color=#green> {" real-time "->s} </Text>
+        {"previews and confirm changes at the end, or cancel to revert all."->s}
+      </Text>
+    </Box>
+  }
+}
+
 module Implementation = {
   @react.component
   let make = () => {
     let steps = CustomizeCommand_Steps.useSteps()
 
-    <Box display=#flex flexDirection=#column>
-      <Text> {"Shifter ⚡"->s} </Text>
+    <Box display=#flex flexDirection=#column paddingLeft={1.0->Obj.magic}>
       {if steps.current.id === CustomizeCommand_Steps.initial {
-        <Box paddingBottom={1} display=#flex flexDirection=#column>
-          <Text>
-            {"This command will guide you through creating a new UI config from scratch."->s}
-          </Text>
-          <Text>
-            {"Enjoy real-time previews and confirm changes at the end, or cancel to revert all."->s}
-          </Text>
-        </Box>
+        <WelcomeMessage />
       } else {
         React.null
       }}

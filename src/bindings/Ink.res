@@ -26,6 +26,8 @@ module Style = {
     marginTop?: int,
     color?: color,
     borderStyle?: borderStyle,
+    italic?: bool,
+    bold?: bool
   }
 }
 
