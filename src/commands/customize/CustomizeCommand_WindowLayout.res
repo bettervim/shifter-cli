@@ -72,7 +72,12 @@ let make = () => {
     }
 
     setWindowFormat(layout)
-    setSelected(_ => Some(value))
+    {
+      switch value {
+      | #"number-and-name" => setSelected(_ => Some(value))
+      | _ => steps.forward()
+      }
+    }
   }
 
   <Box display=#flex flexDirection=#column>

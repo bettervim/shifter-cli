@@ -1,7 +1,7 @@
 open Ink
 
 module ModulesSelect = MultiSelect.Make({
-  type t = [#clock | #hostname]
+  type t = [#clock | #hostname | #date]
 })
 
 module Modules = {
@@ -13,11 +13,13 @@ module Modules = {
 
   let clock = make(~icon=" ", ~content="%H:%M", ...)
   let hostname = make(~icon="", ~content="#H", ...)
+  let date = make(~icon="", ~content="%Y", ...)
 }
 
 @react.component
 let make = () => {
   let store = CustomizeCommands_Store.useStore()
+  let steps = CustomizeCommand_Steps.useSteps()
 
   let handleChange = modules => {
     let {theme} = store
@@ -25,6 +27,7 @@ let make = () => {
       let compiledModule = switch mod {
         | #clock => Modules.clock(~theme)
         | #hostname => Modules.hostname(~theme)
+        | #date => Modules.date(~theme)
       }
 
       `${modules}${compiledModule}`
@@ -33,9 +36,8 @@ let make = () => {
     Tmux.exec(SetGlobal(StatusRight(compiledModules)))
   }
 
-  let handleSubmit = vs => {
-    Console.log(vs)
-  }
+  let handleSubmit = _ => 
+    steps.forward()
 
   <Box>
     <ModulesSelect
@@ -49,6 +51,10 @@ let make = () => {
         {
           label: "Hostname",
           value: #hostname,
+        },
+        {
+          label: "Date",
+          value: #date,
         },
       ]
     />
