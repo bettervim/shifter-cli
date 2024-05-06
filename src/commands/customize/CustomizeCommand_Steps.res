@@ -5,8 +5,9 @@ include StepsCrafter.Make({
     | #WindowLayout
     | #StatusLeft
     | #StatusRight
+    | #Review
     | #Terminate
   ]
-  let steps = [#SelectTheme, #StatusPosition, #WindowLayout, #StatusLeft, #StatusRight, #Terminate]
+  let steps = [#SelectTheme, #StatusPosition, #WindowLayout, #StatusLeft, #StatusRight, #Review, #Terminate]
   let initial = #SelectTheme
 })

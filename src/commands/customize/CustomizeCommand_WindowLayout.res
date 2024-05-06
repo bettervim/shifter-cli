@@ -33,7 +33,7 @@ module WindowLayout = {
 }
 
 let useSetWindowFormat = () => {
-  let store = CustomizeCommands_Store.useStore()
+  let store = CustomizeCommand_Store.useStore()
   let setWindowFormat = layout => {
     open Tmux
     let styles = Tmux.Styles.inline({bold: true})

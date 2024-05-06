@@ -25,7 +25,8 @@ let options = {
 @react.component
 let make = () => {
   let steps = CustomizeCommand_Steps.useSteps()
-  let store = CustomizeCommands_Store.useStore()
+  let store = CustomizeCommand_Store.useStore()
+
   let updateTmuxUI = (theme: Themes.t) => {
     open Tmux
 

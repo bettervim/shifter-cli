@@ -18,7 +18,7 @@ module Modules = {
 
 @react.component
 let make = () => {
-  let store = CustomizeCommands_Store.useStore()
+  let store = CustomizeCommand_Store.useStore()
   let steps = CustomizeCommand_Steps.useSteps()
   
   let commandFromModules = (modules) => {
