@@ -20,8 +20,8 @@ module Modules = {
 let make = () => {
   let store = CustomizeCommands_Store.useStore()
   let steps = CustomizeCommand_Steps.useSteps()
-
-  let handleChange = modules => {
+  
+  let commandFromModules = (modules) => {
     let {theme} = store
     let compiledModules = modules->Array.reduce("", (modules, mod) => {
       let compiledModule = switch mod {
@@ -32,11 +32,20 @@ let make = () => {
 
       `${modules}${compiledModule}`
     })
-
-    Tmux.exec(SetGlobal(StatusRight(compiledModules)))
+    
+    Tmux.SetGlobal(Tmux.StatusRight(compiledModules))
   }
 
-  let handleSubmit = _ => steps.forward()
+  let handleChange = modules => {
+    let command = commandFromModules(modules)
+    Tmux.exec(command)
+  }
+
+  let handleSubmit = modules => { 
+    let command = commandFromModules(modules)
+    store.addCommands([command])
+    steps.forward()
+  }
 
   <Box display=#flex flexDirection=#column>
     <StepHeader number={steps.current.index}>

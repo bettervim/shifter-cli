@@ -32,11 +32,21 @@ module WindowLayout = {
   let numberAndName = (~separator=": ") => " #I" ++ separator ++ "#W "
 }
 
-let setWindowFormat = layout => {
-  let styles = Tmux.Styles.inline({bold: true})
-  let layout = `${styles}${layout}`
-  Tmux.exec(SetGlobal(WindowStatusFormat(layout)))
-  Tmux.exec(SetGlobal(WindowStatusCurrentFormat(layout)))
+let useSetWindowFormat = () => {
+  let store = CustomizeCommands_Store.useStore()
+  let setWindowFormat = layout => {
+    open Tmux
+    let styles = Tmux.Styles.inline({bold: true})
+    let layout = `${styles}${layout}`
+    let statusCommand = SetGlobal(WindowStatusFormat(layout))
+    let statusCurrentCommand = SetGlobal(WindowStatusCurrentFormat(layout))
+
+    store.addCommands([statusCommand, statusCurrentCommand])
+    Tmux.exec(statusCommand)
+    Tmux.exec(statusCurrentCommand)
+  }
+
+  setWindowFormat
 }
 
 module CustomSeparator = {
@@ -44,6 +54,7 @@ module CustomSeparator = {
   let make = () => {
     let steps = CustomizeCommand_Steps.useSteps()
     let (value, setValue) = React.useState(_ => ": ")
+    let setWindowFormat = useSetWindowFormat()
 
     ReactUse.useDebounce(() => {
       WindowLayout.numberAndName(~separator=value)->setWindowFormat
@@ -64,6 +75,8 @@ module CustomSeparator = {
 let make = () => {
   let steps = CustomizeCommand_Steps.useSteps()
   let (selected, setSelected) = React.useState(_ => None)
+  let setWindowFormat = useSetWindowFormat()
+
   let handleSelect = (value: WindowLayoutSelect.t) => {
     let layout = switch value {
     | #name => WindowLayout.name
@@ -72,6 +85,7 @@ let make = () => {
     }
 
     setWindowFormat(layout)
+
     {
       switch value {
       | #"number-and-name" => setSelected(_ => Some(value))
@@ -81,9 +95,7 @@ let make = () => {
   }
 
   <Box display=#flex flexDirection=#column>
-    <StepHeader number={steps.current.index}>
-      {"Choose your preferred tab layout"->s}
-    </StepHeader>
+    <StepHeader number={steps.current.index}> {"Choose your preferred tab layout"->s} </StepHeader>
     {switch selected {
     | None => <WindowLayoutSelect options onChange={handleSelect} />
     | Some(#"number-and-name") => <CustomSeparator />

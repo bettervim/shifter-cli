@@ -16,11 +16,16 @@ module Make = (ISelect: ISelect) => {
   }
 
   @react.component
-  let make = (~options, ~onSubmit, ~onChange: array<ISelect.t> => unit) => {
+  let make = (
+    ~options,
+    ~onSubmit: array<ISelect.t> => unit,
+    ~onChange: array<ISelect.t> => unit,
+  ) => {
     let handleChange = value => value->Obj.magic->onChange
+    let handleSubmit = value => value->Obj.magic->onSubmit
 
-    <InkUI.MultiSelect options={options->parseOptions} onChange={handleChange} onSubmit={onSubmit} />
+    <InkUI.MultiSelect
+      options={options->parseOptions} onChange={handleChange} onSubmit={handleSubmit}
+    />
   }
 }
-
-

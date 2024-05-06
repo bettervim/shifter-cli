@@ -24,6 +24,7 @@ module Implementation = {
   @react.component
   let make = () => {
     let steps = CustomizeCommand_Steps.useSteps()
+    let store = CustomizeCommands_Store.useStore()
 
     <Box display=#flex flexDirection=#column paddingLeft={1.0->Obj.magic}>
       {if steps.current.id === CustomizeCommand_Steps.initial {
@@ -37,10 +38,7 @@ module Implementation = {
       | #StatusLeft => <CustomizeCommand_StatusLeft />
       | #WindowLayout => <CustomizeCommand_WindowLayout />
       | #StatusRight => <CustomizeCommand_StatusRight />
-      | #Terminate => {
-          Console.clear()
-          <Text> {"Completed ✅"->s} </Text>
-        }
+      | #Terminate => React.null
       }}
     </Box>
   }

@@ -63,4 +63,9 @@ let parse = command =>
   | SetGlobal(arg) => `tmux set -g ${arg->argToString}`
   }
 
+let dump = commands => 
+  commands
+  ->Array.map(parse)
+  ->Array.join("\n")
+
 let exec = command => NodeJs.ChildProcess.execSync(command->parse)->ignore

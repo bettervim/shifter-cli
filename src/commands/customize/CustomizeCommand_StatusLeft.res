@@ -31,13 +31,18 @@ let options = {
 @react.component
 let make = () => {
   let steps = CustomizeCommand_Steps.useSteps()
+  let store = CustomizeCommands_Store.useStore()
   let handleChange = value => {
-    switch value {
-    | #"session-name" => SetGlobal(StatusLeft(" #S "))->Tmux.exec
-    | #"number-and-session-name" => SetGlobal(StatusLeft(" #I #S "))->Tmux.exec
-    | #hidden => SetGlobal(StatusLeft(""))->Tmux.exec
-    | _ => ()
+    open Tmux
+
+    let command = switch value {
+    | #"session-name" => SetGlobal(StatusLeft(" #S "))
+    | #"number-and-session-name" => SetGlobal(StatusLeft(" #I #S "))
+    | #hidden => SetGlobal(StatusLeft(""))
     }
+
+    Tmux.exec(command)
+    store.addCommands([command])
     
     steps.forward()
   }
