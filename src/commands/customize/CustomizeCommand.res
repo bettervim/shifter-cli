@@ -38,7 +38,6 @@ module Implementation = {
       | #WindowLayout => <CustomizeCommand_WindowLayout />
       | #StatusRight => <CustomizeCommand_StatusRight />
       | #Review => <CustomizeCommand_Review />
-      | #Terminate => React.null
       }}
     </Box>
   }
