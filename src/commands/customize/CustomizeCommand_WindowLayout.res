@@ -77,7 +77,7 @@ let make = () => {
   let (selected, setSelected) = React.useState(_ => None)
   let setWindowFormat = useSetWindowFormat()
 
-  let handleSelect = (value: WindowLayoutSelect.t) => {
+  let handleSelect = (value) => {
     let layout = switch value {
     | #name => WindowLayout.name
     | #number => WindowLayout.number

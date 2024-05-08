@@ -21,19 +21,16 @@ let options = {
 @react.component
 let make = () => {
   let steps = CustomizeCommand_Steps.useSteps()
+  let store = CustomizeCommand_Store.useStore()
+
   let handleChange = position => {
-    let value = switch position {
-    | "top" => Some(#top)
-    | "bottom" => Some(#bottom)
-    | _ => None
+    let command = {
+      open Tmux
+      SetGlobal(StatusPosition(position))
     }
 
-    switch value {
-    | Some(position) => SetGlobal(StatusPosition(position))->Tmux.exec->ignore
-    | None => ()
-    }
-
-
+    Tmux.exec(command)
+    store.addCommands([command])
     steps.forward()
   }
 

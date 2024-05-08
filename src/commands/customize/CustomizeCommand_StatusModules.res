@@ -1,8 +1,8 @@
 type modules = [#clock | #hostname | #date | #"session-name" | #"number-and-session-name"]
 
 let makeModule = (~icon, ~content, ~theme: Themes.t) => {
-  let iconStyles = Tmux.Styles.inline({bg: theme.primary._200, fg: theme.background._200})
-  let contentStyles = Tmux.Styles.inline({bg: theme.background._200, fg: theme.foreground._200})
+  let iconStyles = Tmux.Styles.inline({bg: theme.primary, fg: theme.background})
+  let contentStyles = Tmux.Styles.inline({bg: theme.background, fg: theme.foreground})
   `${iconStyles} ${icon} ${contentStyles} ${content} `
 }
 

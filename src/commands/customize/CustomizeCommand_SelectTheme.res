@@ -4,6 +4,10 @@ module ThemesSelect = Select.Make({
   type t = [
     | #nord
     | #dracula
+    | #"catppuccin-mocha"
+    | #"catppuccin-frappe"
+    | #"catppuccin-latte"
+    | #"catppuccin-macchiato"
   ]
 })
 
@@ -19,6 +23,22 @@ let options = {
       label: "Dracula",
       value: #dracula,
     },
+    {
+      label: "Catppuccin [Mocha]",
+      value: #"catppuccin-mocha",
+    },
+    {
+      label: "Catppuccin [Frappe]",
+      value: #"catppuccin-frappe",
+    },
+    {
+      label: "Catppuccin [Macchiato]",
+      value: #"catppuccin-macchiato",
+    },
+    {
+      label: "Catppuccin [Latte]",
+      value: #"catppuccin-latte",
+    },
   ]
 }
 
@@ -33,15 +53,15 @@ let make = () => {
     let commands = [
       SetGlobal(
         WindowStatusCurrentStyle({
-          bg: theme.primary._200,
-          fg: theme.background._200,
+          bg: theme.primary,
+          fg: theme.background,
         }),
       ),
-      SetGlobal(WindowStatusStyle({bg: theme.background._200})),
-      SetGlobal(StatusBg(theme.background._200)),
-      SetGlobal(StatusFg(theme.foreground._200)),
+      SetGlobal(WindowStatusStyle({bg: theme.background})),
+      SetGlobal(StatusBg(theme.background)),
+      SetGlobal(StatusFg(theme.foreground)),
     ]
-    
+
     store.addCommands(commands)
 
     commands->Array.forEach(command => {
@@ -51,8 +71,12 @@ let make = () => {
 
   let handleChange = theme => {
     let selectedTheme = switch theme {
-      | #nord => Themes.nord
-      | #dracula => Themes.dracula
+    | #nord => Themes.nord
+    | #dracula => Themes.dracula
+    | #"catppuccin-mocha" => Themes.Catppuccin.mocha
+    | #"catppuccin-frappe" => Themes.Catppuccin.frappe
+    | #"catppuccin-macchiato" => Themes.Catppuccin.macchiato
+    | #"catppuccin-latte" => Themes.Catppuccin.latte
     }
     updateTmuxUI(selectedTheme)
     store.setTheme(selectedTheme)

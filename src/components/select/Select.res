@@ -15,7 +15,7 @@ module Make = (ISelect: ISelect) => {
     })
   }
   @react.component
-  let make = (~options, ~onChange) => {
+  let make = (~options, ~onChange: ISelect.t => unit) => {
     let handleChange = value => value->Obj.magic->onChange
 
     <InkUI.Select options={options->parseOptions} onChange={handleChange} />
