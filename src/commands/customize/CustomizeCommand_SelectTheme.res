@@ -33,8 +33,8 @@ let make = () => {
     let commands = [
       SetGlobal(
         WindowStatusCurrentStyle({
-          bg: theme.primary._100,
-          fg: theme.background._100,
+          bg: theme.primary._200,
+          fg: theme.background._200,
         }),
       ),
       SetGlobal(WindowStatusStyle({bg: theme.background._200})),
