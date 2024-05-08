@@ -1,4 +1,5 @@
 type statusPosition = [#top | #bottom]
+type statusJustify = [#centre | #left | #right]
 
 module Styles = {
   type t = {
@@ -27,6 +28,7 @@ type arg =
   | StatusBg(string)
   | StatusFg(string)
   | StatusPosition(statusPosition)
+  | StatusJustify(statusJustify)
   | WindowStatusSeparator(string)
   | WindowStatusCurrentFormat(string)
   | WindowStatusCurrentStyle(Styles.t)
@@ -43,6 +45,7 @@ let argToString = arg => {
   | StatusBg(value) => make(~command="status-bg", ~value)
   | StatusFg(value) => make(~command="status-fg", ~value)
   | StatusPosition(value) => make(~command="status-position", ~value=(value :> string))
+  | StatusJustify(value) => make(~command="status-justify", ~value=(value :> string))
   | WindowStatusSeparator(value) => make(~command="window-status-separator", ~value)
   | WindowStatusCurrentFormat(value) => make(~command="window-status-current-format", ~value)
   | WindowStatusCurrentStyle(value) =>

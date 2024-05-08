@@ -33,9 +33,10 @@ module Implementation = {
       }}
       {switch steps.current.id {
       | #SelectTheme => <CustomizeCommand_SelectTheme />
+      | #WindowLayout => <CustomizeCommand_WindowLayout />
+      | #StatusJustify => <CustomizeCommand_StatusJustify />
       | #StatusPosition => <CustomizeCommand_SelectStatusPosition />
       | #StatusLeft => <CustomizeCommand_StatusLeft />
-      | #WindowLayout => <CustomizeCommand_WindowLayout />
       | #StatusRight => <CustomizeCommand_StatusRight />
       | #Review => <CustomizeCommand_Review />
       }}

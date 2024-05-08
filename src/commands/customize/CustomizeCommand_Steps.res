@@ -1,12 +1,21 @@
 include StepsCrafter.Make({
   type t = [
     | #SelectTheme
-    | #StatusPosition
     | #WindowLayout
+    | #StatusPosition
+    | #StatusJustify
     | #StatusLeft
     | #StatusRight
     | #Review
   ]
-  let steps = [#SelectTheme, #StatusPosition, #WindowLayout, #StatusLeft, #StatusRight, #Review]
+  let steps = [
+    #SelectTheme,
+    #WindowLayout,
+    #StatusPosition,
+    #StatusLeft,
+    #StatusRight,
+    #StatusJustify,
+    #Review,
+  ]
   let initial = #SelectTheme
 })

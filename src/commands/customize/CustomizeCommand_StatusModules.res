@@ -9,7 +9,7 @@ let makeModule = (~icon, ~content, ~theme: Themes.t) => {
 let clock = makeModule(~icon=" ", ~content="%H:%M", ...)
 let hostname = makeModule(~icon="", ~content="#H", ...)
 let date = makeModule(~icon="", ~content="%Y", ...)
-let sessionName = makeModule(~icon="", ~content="#S", ...)
+let sessionName = makeModule(~icon="", ~content="#S", ...)
 let sessionNameAndNumber = makeModule(~icon="#I", ~content="#S", ...)
 
 let compile = (~theme, mod) =>
