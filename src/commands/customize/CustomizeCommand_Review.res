@@ -12,6 +12,7 @@ module ReviewOptionsSelect = Select.Make({
 @react.component
 let make = () => {
   let store = CustomizeCommand_Store.useStore()
+  let timeCapsule = Tmux.TimeCapsule.useTimeCapsule()
   let (selected, setSelected) = React.useState(_ => None)
 
   let handleChange = value => {
@@ -21,8 +22,8 @@ let make = () => {
         let commands = Tmux.dump(store.commands)
         Clipboardy.writeSync(commands)
       }
-    | #cancel => ()
-    | #shifter => ()
+    | #cancel => timeCapsule.revert()
+    | #shifter => Tmux.Store.save(store.commands)
     }
     setSelected(_ => Some(value))
   }

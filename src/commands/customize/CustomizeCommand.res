@@ -24,6 +24,13 @@ module Implementation = {
   @react.component
   let make = () => {
     let steps = CustomizeCommand_Steps.useSteps()
+    let timeCapsule = Tmux.TimeCapsule.useTimeCapsule()
+
+    React.useEffect0(() => {
+      timeCapsule.capture()
+
+      None
+    })
 
     <Box display=#flex flexDirection=#column paddingLeft={1.0->Obj.magic}>
       {if steps.current.id === CustomizeCommand_Steps.initial {
@@ -48,7 +55,9 @@ module Implementation = {
 let make = () => {
   <CustomizeCommand_Store.Provider>
     <CustomizeCommand_Steps.Provider>
-      <Implementation />
+      <Tmux.TimeCapsule.Provider>
+        <Implementation />
+      </Tmux.TimeCapsule.Provider>
     </CustomizeCommand_Steps.Provider>
   </CustomizeCommand_Store.Provider>
 }

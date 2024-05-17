@@ -9,7 +9,7 @@
 
 ## Temas
 - Nord ✅
-- Catppuccin
+- Catppuccin ✅
 - Dracula ✅
 - Poimandres
 - Tokyo Night

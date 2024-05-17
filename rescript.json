@@ -13,14 +13,24 @@
     }
   ],
   "suffix": ".res.mjs",
+  "ppx-flags": [
+    [
+      "@greenlabs/ppx-spice/ppx",
+      "-uncurried"
+    ]
+  ],
   "bs-dependencies": [
     "@rescript/core",
     "@rescript/react",
-    "rescript-nodejs"
+    "rescript-nodejs",
+    "@greenlabs/ppx-spice"
   ],
   "bsc-flags": [
     "-open RescriptCore",
     "-open Render"
   ],
-  "jsx": { "version": 4, "mode": "automatic" }
+  "jsx": {
+    "version": 4,
+    "mode": "automatic"
+  }
 }

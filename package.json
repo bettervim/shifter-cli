@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@caporal/core": "^2.0.7",
+    "@greenlabs/ppx-spice": "0.2.1",
     "@inkjs/ui": "^1.0.0",
     "@rescript/core": "1.2.0",
     "@rescript/react": "0.12.1",
