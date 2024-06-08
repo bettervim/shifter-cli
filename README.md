@@ -2,6 +2,8 @@
 
 Shifter CLI is an attempt to create a CLI tool that configures the tmux UI. This project leverages ReScript and various npm packages to provide a customizable and user-friendly interface for tmux configuration.
 
+https://github.com/bettervim/shifter-cli/assets/20327229/fd5cbf22-b0ac-49c0-baf0-052c164a2f83
+
 ## Installation
 
 To install the necessary dependencies, navigate to the project directory and run:
